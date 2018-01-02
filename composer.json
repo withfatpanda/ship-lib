@@ -1,0 +1,24 @@
+{
+    "name": "withfatpanda/ship-lib",
+    "type": "library",
+    "version": "1.0.3",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Fat Panda, LLC",
+            "homepage": "https://www.withfatpanda.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FatPanda\\WordPress\\Ship\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": "~5.4",
+        "duncan3dc/blade": "^4.1",
+        "league/flysystem": "^1.0",
+        "league/climate": "^3.2"
+    }
+}

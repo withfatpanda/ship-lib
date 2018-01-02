@@ -1,0 +1,27 @@
+{
+    "name": "withfatpanda/ship",
+    "type": "wordpress-theme",
+    "version": "*",
+    "description": "a WordPress Starter Theme",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Fat Panda, LLC",
+            "homepage": "https://www.withfatpanda.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "withfatpanda/ship-lib": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "FatPanda\\WordPress\\Ship\\": "src/php/Ship"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "FatPanda\\WordPress\\Ship\\Setup::postCreateProjectCmd"
+        ]
+    }
+}

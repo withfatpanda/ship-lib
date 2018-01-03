@@ -14,7 +14,7 @@ class Setup {
     'Author' => 'Fat Panda, LLC',
     'Author URI' => 'https://www.withfatpanda.com',
     'Description' => 'A WordPress Starter Theme',
-    'Version' => '1.0.4',
+    'Version' => null,
     'License' => 'GPL-2.0',
     'License URI' => 'http://www.gnu.org/licenses/gpl-2.0.html',
     'Text Domain' => 'understrap',
@@ -58,7 +58,11 @@ class Setup {
 
   function setupLocalProject($useDefaults = false)
   {
+    $shipComposer = (array) json_decode($this->readFile('composer.json'));
+
     $meta = array_merge(self::$defaultMeta, []);
+
+    $meta['Version'] = $shipComposer['version'];
 
     $finalMeta = [];
 

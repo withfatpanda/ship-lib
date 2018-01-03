@@ -14,7 +14,7 @@ class Setup {
     'Author' => 'Fat Panda, LLC',
     'Author URI' => 'https://www.withfatpanda.com',
     'Description' => 'A WordPress Starter Theme',
-    'Version' => '1.0.3',
+    'Version' => '1.0.4',
     'License' => 'GPL-2.0',
     'License URI' => 'http://www.gnu.org/licenses/gpl-2.0.html',
     'Text Domain' => 'understrap',
@@ -170,7 +170,7 @@ class Setup {
   {
     $input = $this->cli->radio($question, $options);
 
-    return $input->prompt();
+    return $input->prompt() ?: $default;
   }
 
   function prompt($question, $default = null)

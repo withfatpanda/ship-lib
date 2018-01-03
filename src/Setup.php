@@ -179,9 +179,11 @@ class Setup {
 
     if (!is_null($default)) {
       $prompt .= ' [' . $default . ']:';
+    } else {
+      $prompt .= ':';
     }
 
-    $input = $this->cli->input($question);
+    $input = $this->cli->input($prompt);
 
     if ($default) {
       $input->defaultTo($default);

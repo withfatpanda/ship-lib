@@ -1,6 +1,8 @@
-@if(display_sidebar('left'))
-  @include('partials.sidebar-left')
-@endif
+@section('sidebar-left')
+  @if(display_sidebar('left'))
+    @include('partials.sidebar-left')
+  @endif
+@show
 
 @if (display_sidebar())
   @if (is_active_sidebar('right-sidebar') || is_active_sidebar('left-sidebar'))

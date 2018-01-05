@@ -34,6 +34,41 @@ function blade($template = '', $data = [])
   }
 }
 
+add_action('blade_init', function($blade) {
+
+  // create directive aliases for common WP template tags
+  $alias = function($name) use ($blade) {
+    // allow for two expressions of $name: 
+    // 1. $name is both the directive and the function to alias
+    // 2. $name is a hash: [ $directiveName => $functionName ]
+    $name = !is_array($name) ? [ $name => $name ] : $name;
+    $directiveName = array_keys($name)[0];
+    $functionName = array_values($name)[0];
+    $blade->directive($directiveName, function($expression = null) use ($functionName) {
+      return "<?php {$functionName}({$expression}); ?>";
+    });
+  };
+
+  collect([
+    'do_action', 
+    'language_attributes', 
+    'body_class', 
+    'wp_head',
+    'wp_footer',
+    'wp_nav_menu',
+    'add_filter',
+    'apply_filters',
+    [ 'filter' => 'add_filter' ]
+  ])->each(function($name) use ($alias) {
+    $alias($name);  
+  });
+
+  $blade->directive('addBodyClass', function($expression = null) {
+    return "<?php add_filter('body_class', function(\$classes) { return array_merge(\$classes, (array) ($expression)); }); ?>";
+  });
+
+});
+
 /**
  * This bit was taken straight out of Sage, but their code is in two places for some reason
  * Basically what this does is it supplements the WordPress template hiearchy

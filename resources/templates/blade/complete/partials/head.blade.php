@@ -4,8 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="{{ bloginfo( 'name' ) }} - {{ bloginfo('description') }}">
+  <meta name="apple-mobile-web-app-title" content="{{ get_bloginfo( 'name' ) }} - {{ get_bloginfo('description') }}">
   <link rel="profile" href="http://gmpg.org/xfn/11">
-  <link rel="pingback" href="{{ bloginfo( 'pingback_url' ) }}">
-  @php(wp_head())
+  <link rel="pingback" href="{{ get_bloginfo( 'pingback_url' ) }}">
+  @wp_head()
 </head>

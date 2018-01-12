@@ -34,6 +34,11 @@ function blade($template = '', $data = [])
   }
 }
 
+function echo_option_or_default($optionName, $default = null)
+{
+  echo (string) get_option($optionName) ?: $default;
+}
+
 add_action('blade_init', function($blade) {
 
   // create directive aliases for common WP template tags
@@ -58,13 +63,24 @@ add_action('blade_init', function($blade) {
     'wp_nav_menu',
     'add_filter',
     'apply_filters',
+    'get_option',
+    'the_post',
+    'wp_reset_postdata',
     [ 'filter' => 'add_filter' ]
   ])->each(function($name) use ($alias) {
     $alias($name);  
   });
 
   $blade->directive('addBodyClass', function($expression = null) {
-    return "<?php add_filter('body_class', function(\$classes) { return array_merge(\$classes, (array) ($expression)); }); ?>";
+    return "<?php add_filter('body_class', function(\$classes) { return array_merge(\$classes, (array) {$expression}); }); ?>";
+  });
+
+  $blade->directive('option', function($expression) {
+    return "<?php echo_option_or_default($expression); ?>";
+  });
+
+  $blade->directive('setup_postdata', function($expression) {
+    return "<?php global \$post; \$post = {$expression}; setup_postdata(\$post); ?>";
   });
 
 });

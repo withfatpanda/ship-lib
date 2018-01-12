@@ -1,5 +1,9 @@
 # ship-lib change history
 
+## 1.0.8: 2018-01-11
+- Added directives for get_option(), the_post(), wp_reset_postdata(), and a special version of @setup_postdata(), which takes as its only argument any arbitrary variable name and assigns that variable's value to the global $post
+
+
 ## 1.0.7: 2018-01-05
 - Added new JS dependencies: slideout (for drawer-style menuing), jQuery 1.14.2, and ES Lint to lint builds
 - Upgraded Bootstrap dependency to 4.0.0-beta.3

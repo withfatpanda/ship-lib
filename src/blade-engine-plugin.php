@@ -63,6 +63,7 @@ add_action('blade_init', function($blade) {
     'wp_nav_menu',
     'add_filter',
     'apply_filters',
+    'the_content',
     'get_option',
     'the_post',
     'wp_reset_postdata',

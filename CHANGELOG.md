@@ -1,5 +1,8 @@
 # ship-lib change history
 
+## 1.0.11: 2018-01-23
+- Fix composer license token
+
 ## 1.0.10: 2018-01-23
 - Addition of global functions in src/functions.php
 - Use global `now()` to get a time-zone adjusted instance of [`Carbon\Carbon`](http://carbon.nesbot.com/docs/)

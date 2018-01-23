@@ -66,7 +66,9 @@ add_action('blade_init', function($blade) {
     'the_content',
     'get_option',
     'the_post',
+    'do_not_repeat',
     'wp_reset_postdata',
+    'disable_buckets',
     [ 'filter' => 'add_filter' ]
   ])->each(function($name) use ($alias) {
     $alias($name);  
@@ -82,6 +84,24 @@ add_action('blade_init', function($blade) {
 
   $blade->directive('setup_postdata', function($expression) {
     return "<?php global \$post; \$post = {$expression}; setup_postdata(\$post); ?>";
+  });
+
+  $blade->directive('ago', function($expression) {
+    if (empty($expression)) {
+      $expression = "get_post_time('c', true)";
+    }
+    return "<?php echo carbon($expression)->diffForHumans(); ?>";
+  });
+
+  $blade->directive('disable_buckets', function($expression) {
+    return "<?php \\FatPanda\\WordPress\\Ship\\Bucket\\Facade::disable(); ?>";
+  });
+
+  $blade->directive('bucket', function($expression) {
+    if (empty($expression)) {
+      $expression = "'default'";
+    }
+    return "<ul><?php \\FatPanda\\WordPress\\Ship\\Bucket\\Facade::get($expression)->each(function(\$in) { echo '<li>' . \$in['post']->post_title . '</li>'; }); ?></ul>";
   });
 
 });

@@ -78,7 +78,7 @@ class Bucket {
 
   function filter($posts, $group = 'default')
   {
-    return collect($posts)->map(function($post) {
+    return collect($posts)->filter()->map(function($post) {
       return $this->normalize($post);
     })->filter(function($post) {
       return $this->disabled || !$this->items->where('id', $post->ID)->count();

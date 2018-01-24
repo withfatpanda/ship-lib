@@ -1,5 +1,8 @@
 # ship-lib change history
 
+## 1.0.12: 2018-01-24
+- Fix: filter out any null/empty objects before processing `Bucket::filter`
+
 ## 1.0.11: 2018-01-23
 - Fix composer license token
 

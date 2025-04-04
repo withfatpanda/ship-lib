@@ -1,3 +1,5 @@
+Retired project.
+
 # ship-lib
 
 This project is a companion library to [Ship](https://github.com/withfatpanda/ship), 
